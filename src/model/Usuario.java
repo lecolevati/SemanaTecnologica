@@ -2,14 +2,15 @@ package model;
 
 public class Usuario {
 
-	private int codigo;
+	private String codigo;
 	private String nome;
 	private String usuario;
 	private String senha;
-	public int getCodigo() {
+	private Perfil perfil;
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
@@ -29,6 +30,12 @@ public class Usuario {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 	@Override
 	public String toString() {

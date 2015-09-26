@@ -2,7 +2,7 @@ package model;
 
 public class Palestra {
 
-	private int codigo;
+	private String codigo;
 	private String titulo;
 	private String titulacao;
 	private String palestrante;
@@ -13,10 +13,11 @@ public class Palestra {
 	private TipoPalestra tipo;
 	private Curso curso;
 	private Evento evento;
-	public int getCodigo() {
+	private Sala sala;
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public String getTitulo() {
@@ -78,6 +79,12 @@ public class Palestra {
 	}
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+	public Sala getSala() {
+		return sala;
+	}
+	public void setSala(Sala sala) {
+		this.sala = sala;
 	}
 	@Override
 	public String toString() {
