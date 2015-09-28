@@ -311,11 +311,35 @@
 								</div>
 							</form>
 						</c:if>
+						<c:if test="${not empty listapalestra }">
+							<div class="col-lg-4">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Título</th>
+												<th>Palestrante</th>
+												<th>Inscritos</th>
+												<th>Editar</th>
+												<th>Excluir</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${listapalestra }" var="pal">
+											<tr>
+												<td><c:out value="${pal.titulo }" /></td>
+												<td><c:out value="${pal.palestrante }" /></td>
+												<td><c:out value="${pal.inscritos }" /></td>
+												<td><!-- Botão editar --></td>
+												<td><!-- Botão excluir --></td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</c:if>
 						<!-- div com a tabela das palestras por curso -->
-						<div id="fim">
-							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-						</div>
 					</div>
 					<!-- /.container-fluid -->
 

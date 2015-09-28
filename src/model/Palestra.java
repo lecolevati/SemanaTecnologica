@@ -14,6 +14,8 @@ public class Palestra {
 	private Curso curso;
 	private Evento evento;
 	private Sala sala;
+	private int inscritos;
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -86,8 +88,15 @@ public class Palestra {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
+	public int getInscritos() {
+		return inscritos;
+	}
+	public void setInscritos(int inscritos) {
+		this.inscritos = inscritos;
+	}
 	@Override
 	public String toString() {
 		return this.titulo;
 	}
+
 }
