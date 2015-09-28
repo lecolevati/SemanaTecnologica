@@ -62,121 +62,255 @@
 							</div>
 						</div>
 						<!-- /.row -->
-						<form action="cadastropalestras" method="post">
-							<div class="col-lg-6">
-								<div class="table-responsive">
-									<table class="table table-hover">
-										<tbody>
-											<tr>
-												<td>Código</td>
-												<td><input class="form-control" placeholder="Código"
-													readonly="readonly" size="10" name="codigo"></td>
-											</tr>
-											<tr>
-												<td>Título do Evento</td>
-												<td><input class="form-control" placeholder="Título"
-													size="40" name="titulo"></td>
-											</tr>
-											<tr>
-												<td>Titulação do Palestrante</td>
-												<td><select class="form-control" name="titulacao">
-														<option value="Sr.">Sr.</option>
-														<option value="Sra.">Sra.</option>
-														<option value="Esp.">Esp.</option>
-														<option value="Me.">Me.</option>
-														<option value="Ma.">Ma.</option>
-														<option value="Dr.">Dr.</option>
-														<option value="Dra.">Dra.</option>
-												</select>
-											</tr>
-											<tr>
-											<tr>
-												<td>Nome do Palestrante</td>
-												<td><input class="form-control" placeholder="Nome"
-													size="40" name="nome"></td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Empresa do Palestrante</td>
-												<td><input class="form-control" placeholder="Empresa"
-													size="40" name="empresa"></td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Duração do Evento (Horas)</td>
-												<td><input class="form-control" placeholder="Duração"
-													value="2" size="10" name="duracao"></td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Dia</td>
-												<td><select class="form-control" name="dia">
-														<c:forEach items="${listadatas }" var="data">
-															<option value="${data.dtEvento }"><c:out
-																	value="${data.dtConvertida }" /></option>
-														</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Hora</td>
-												<td><input class="form-control"
-													placeholder="Hora (HH:mm)" size="40" name="hora"></td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Tipo do Evento</td>
-												<td><select class="form-control" name="tipo">
-														<c:forEach items="${listatipo }" var="tipo">
-															<option value="${tipo.codigo }"><c:out
-																	value="${tipo.tipo }" /></option>
-														</c:forEach>
-												</select>
-											</tr>
-											<tr>
-											<tr>
-												<td>Curso Responsável</td>
-												<td><input class="form-control" placeholder="Curso"
-													readonly="readonly" size="40" name="curso"
-													value='<c:out value="${curso.nome }" />'> <input
-													type="hidden" name="codigocurso" value="${curso.codigo }">
-												</td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Evento</td>
-												<td><input class="form-control" placeholder="Evento"
-													readonly="readonly" size="40" name="evento"
-													value='<c:out value="${evento.nome }" />'> <input
-													type="hidden" name="codigoevento" value="${evento.codigo }">
-												</td>
-											</tr>
-											<tr>
-											<tr>
-												<td>Sala</td>
-												<td><select class="form-control" name="sala">
-												<c:forEach items="${listasala }" var="sala">
-													<option value="${sala.numero }">
-														<c:if test="${sala.numero == 0}">	
-															<c:out value="Auditório" />
-														</c:if>
-														<c:if test="${sala.numero != 0}">	
-															<c:out value="${sala.numero }" />
-														</c:if>
-													</option>
-												</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-												<td align="center" colspan="2"><input
-													class="btn btn-default" type="submit" name="enviar"
-													value="Enviar"></td>
-											</tr>
-										</tbody>
-									</table>
+						<c:if test="${empty palestra }">
+							<form action="cadastropalestras" method="post">
+								<div class="col-lg-6">
+									<div class="table-responsive">
+										<table class="table table-hover">
+											<tbody>
+												<tr>
+													<td>Código</td>
+													<td><input class="form-control" placeholder="Código"
+														readonly="readonly" size="10" name="codigo"></td>
+												</tr>
+												<tr>
+													<td>Título do Evento</td>
+													<td><input class="form-control" placeholder="Título"
+														size="40" name="titulo"></td>
+												</tr>
+												<tr>
+													<td>Titulação do Palestrante</td>
+													<td><select class="form-control" name="titulacao">
+															<option value="Sr.">Sr.</option>
+															<option value="Sra.">Sra.</option>
+															<option value="Esp.">Esp.</option>
+															<option value="Me.">Me.</option>
+															<option value="Ma.">Ma.</option>
+															<option value="Dr.">Dr.</option>
+															<option value="Dra.">Dra.</option>
+													</select>
+												</tr>
+												<tr>
+												<tr>
+													<td>Nome do Palestrante</td>
+													<td><input class="form-control" placeholder="Nome"
+														size="40" name="nome"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Empresa do Palestrante</td>
+													<td><input class="form-control" placeholder="Empresa"
+														size="40" name="empresa"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Duração do Evento (Horas)</td>
+													<td><input class="form-control" placeholder="Duração"
+														value="2" size="10" name="duracao"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Dia</td>
+													<td><select class="form-control" name="dia">
+															<c:forEach items="${listadatas }" var="data">
+																<option value="${data.dtEvento }"><c:out
+																		value="${data.dtConvertida }" /></option>
+															</c:forEach>
+													</select></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Hora</td>
+													<td><input class="form-control"
+														placeholder="Hora (HH:mm)" size="40" name="hora"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Tipo do Evento</td>
+													<td><select class="form-control" name="tipo">
+															<c:forEach items="${listatipo }" var="tipo">
+																<option value="${tipo.codigo }"><c:out
+																		value="${tipo.tipo }" /></option>
+															</c:forEach>
+													</select>
+												</tr>
+												<tr>
+												<tr>
+													<td>Curso Responsável</td>
+													<td><input class="form-control" placeholder="Curso"
+														readonly="readonly" size="40" name="curso"
+														value='<c:out value="${curso.nome }" />'> <input
+														type="hidden" name="codigocurso" value="${curso.codigo }">
+													</td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Evento</td>
+													<td><input class="form-control" placeholder="Evento"
+														readonly="readonly" size="40" name="evento"
+														value='<c:out value="${evento.nome }" />'> <input
+														type="hidden" name="codigoevento"
+														value="${evento.codigo }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Sala</td>
+													<td><select class="form-control" name="sala">
+															<c:forEach items="${listasala }" var="sala">
+																<option value="${sala.numero }">
+																	<c:if test="${sala.numero == 0}">
+																		<c:out value="Auditório" />
+																	</c:if>
+																	<c:if test="${sala.numero != 0}">
+																		<c:out value="${sala.numero }" />
+																	</c:if>
+																</option>
+															</c:forEach>
+													</select></td>
+												</tr>
+												<tr>
+													<td align="center" colspan="2"><input
+														class="btn btn-default" type="submit" name="enviar"
+														value="Enviar"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
-						</form>
+							</form>
+						</c:if>
+						<c:if test="${not empty palestra }">
+							<form action="cadastropalestras" method="post">
+								<div class="col-lg-6">
+									<div class="table-responsive">
+										<table class="table table-hover">
+											<tbody>
+												<tr>
+													<td>Código</td>
+													<td><input class="form-control" placeholder="Código"
+														readonly="readonly" size="10" name="codigo"
+														value="${palestra.codigo }"></td>
+												</tr>
+												<tr>
+													<td>Título do Evento</td>
+													<td><input class="form-control" placeholder="Título"
+														size="40" name="titulo" value="${palestra.titulo }"></td>
+												</tr>
+												<tr>
+													<td>Titulação do Palestrante</td>
+													<td><select class="form-control" name="titulacao">
+															<option value="Sr."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Sr.</option>
+															<option value="Sra."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Sra.</option>
+															<option value="Esp."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Esp.</option>
+															<option value="Me."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Me.</option>
+															<option value="Ma."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Ma.</option>
+															<option value="Dr."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Dr.</option>
+															<option value="Dra."
+																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Dra.</option>
+													</select>
+												</tr>
+												<tr>
+												<tr>
+													<td>Nome do Palestrante</td>
+													<td><input class="form-control" placeholder="Nome"
+														size="40" name="nome" value="${palestra.palestrante }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Empresa do Palestrante</td>
+													<td><input class="form-control" placeholder="Empresa"
+														size="40" name="empresa" value="${palestra.empresa }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Duração do Evento (Horas)</td>
+													<td><input class="form-control" placeholder="Duração"
+														value="2" size="10" name="duracao"
+														value="${palestra.duracao }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Dia</td>
+													<td><select class="form-control" name="dia">
+															<c:forEach items="${listadatas }" var="data">
+																<option value="${data.dtEvento }"
+																	<c:if test="${palestra.dt == ${data.dtEvento } }"><c:out value="selected" /></c:if>><c:out
+																		value="${data.dtConvertida }" /></option>
+															</c:forEach>
+													</select></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Hora</td>
+													<td><input class="form-control"
+														placeholder="Hora (HH:mm)" size="40" name="hora"
+														value="${palestra.hr }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Tipo do Evento</td>
+													<td><select class="form-control" name="tipo">
+															<c:forEach items="${listatipo }" var="tipo">
+																<option value="${tipo.codigo }"
+																	<c:if test="${palestra.tipo == ${tipo.codigo } }"><c:out value="selected" /></c:if>><c:out
+																		value="${tipo.tipo }" /></option>
+															</c:forEach>
+													</select>
+												</tr>
+												<tr>
+												<tr>
+													<td>Curso Responsável</td>
+													<td><input class="form-control" placeholder="Curso"
+														readonly="readonly" size="40" name="curso"
+														value='<c:out value="${curso.nome }" />'> <input
+														type="hidden" name="codigocurso" value="${curso.codigo }">
+													</td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Evento</td>
+													<td><input class="form-control" placeholder="Evento"
+														readonly="readonly" size="40" name="evento"
+														value='<c:out value="${evento.nome }" />'> <input
+														type="hidden" name="codigoevento"
+														value="${evento.codigo }"></td>
+												</tr>
+												<tr>
+												<tr>
+													<td>Sala</td>
+													<td><select class="form-control" name="sala">
+															<c:forEach items="${listasala }" var="sala">
+																<option value="${sala.numero }"
+																	<c:if test="${palestra.sala == ${sala.numero } }"><c:out value="selected" /></c:if>>
+																	<c:if test="${sala.numero == 0}">
+																		<c:out value="Auditório" />
+																	</c:if>
+																	<c:if test="${sala.numero != 0}">
+																		<c:out value="${sala.numero }" />
+																	</c:if>
+															</c:forEach>
+													</select></td>
+												</tr>
+
+												<tr>
+													<td align="center" colspan="2"><input
+														class="btn btn-default" type="submit" name="enviar"
+														value="Enviar"></td>
+												</tr>
+
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</c:if>
 						<!-- div com a tabela das palestras por curso -->
 						<div id="fim">
 							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
