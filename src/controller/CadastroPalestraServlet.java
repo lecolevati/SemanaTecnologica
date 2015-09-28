@@ -33,11 +33,11 @@ import model.Sala;
 import model.TipoPalestra;
 import model.Usuario;
 
-@WebServlet("/chamapalestras")
-public class ChamaPalestrasServlet extends HttpServlet {
+@WebServlet("/cadastropalestra")
+public class CadastroPalestraServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ChamaPalestrasServlet() {
+    public CadastroPalestraServlet() {
         super();
     }
 
@@ -48,23 +48,44 @@ public class ChamaPalestrasServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String erro = "";
+		Palestra p = new Palestra();
+		p.setCodigo(request.getParameter("codigo"));
+		p.setTitulo(request.getParameter("titulo"));
+		p.setTitulacao(request.getParameter("titulacao"));
+		p.setPalestrante(request.getParameter("nome"));
+		p.setEmpresa(request.getParameter("empresa"));
+		p.setDuracao(Integer.parseInt(request.getParameter("duracao")));
+		p.setDt(request.getParameter("dia"));
+		p.setHr(request.getParameter("hora"));
+		TipoPalestra tp = new TipoPalestra();
+		Curso cur = new Curso();
+		Evento ev = new Evento();
+		Sala sl = new Sala();
+		tp.setCodigo(Integer.parseInt(request.getParameter("tipo")));
+		cur.setCodigo(Integer.parseInt(request.getParameter("codigocurso")));
+		ev.setCodigo(Integer.parseInt(request.getParameter("codigoevento")));
+		sl.setNumero(Integer.parseInt(request.getParameter("sala")));
+		p.setTipo(tp);
+		p.setCurso(cur);
+		p.setEvento(ev);
+		p.setSala(sl);
 		Usuario u = new Usuario();
 		u.setUsuario(request.getParameter("usuario"));
 		Coordenador coord = new Coordenador();
-		Curso cur = new Curso();
 		List<DataEvento> listaDatas = new ArrayList<DataEvento>();
-		Evento ev = new Evento();
 		List<TipoPalestra> listaTipo = new ArrayList<TipoPalestra>();
 		List<Sala> listaSala = new ArrayList<Sala>();
 		List<Palestra> listaPalestra = new ArrayList<Palestra>();
 		try {
+			IPalestrasDao pDao = new PalestrasDao();
+			pDao.iuPalestras(p);
 			ICoordenadorDao coordDao = new CoordenadorDao();
 			coord = coordDao.consultaCoordenador(u);
 			ICursoDao curDao = new CursoDao();
-			cur = curDao.consultaCurso(coord.getCurso());
+			cur = curDao.consultaCurso(cur);
 			IEventoDao evDao = new EventoDao();
 			ev = evDao.consultaEvento();
 			listaDatas = evDao.consultaDatasEvento(ev);
@@ -72,7 +93,6 @@ public class ChamaPalestrasServlet extends HttpServlet {
 			listaTipo = tpDao.consultaTipos();
 			ISalaDao sDao = new SalaDao();
 			listaSala = sDao.listaSalas();
-			IPalestrasDao pDao = new PalestrasDao();
 			listaPalestra = pDao.consultaReduzidaPalestras(cur);
 		} catch (SQLException e) {
 			erro = e.getMessage();
@@ -86,10 +106,9 @@ public class ChamaPalestrasServlet extends HttpServlet {
 			request.setAttribute("listatipo", listaTipo);
 			request.setAttribute("listasala", listaSala);
 			request.setAttribute("listapalestra", listaPalestra);
+
 			RequestDispatcher view = request.getRequestDispatcher("cadastroPalestras.jsp");
 			view.forward(request, response);
 		}
-		
 	}
-
 }

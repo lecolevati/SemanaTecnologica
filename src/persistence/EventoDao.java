@@ -33,7 +33,7 @@ public class EventoDao implements IEventoDao {
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()){
 			DataEvento de = new DataEvento();
-			de.setDtEvento(rs.getString("data_evento"));
+			de.setDtEvento(rs.getString("data_evento").substring(0,rs.getString("data_evento").lastIndexOf(" ")));
 			de.setDtConvertida(rs.getString("dtconvertida"));
 			Evento eve = new Evento();
 			eve.setCodigo(rs.getInt("codigo"));

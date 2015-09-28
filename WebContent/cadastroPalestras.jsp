@@ -62,9 +62,14 @@
 							</div>
 						</div>
 						<!-- /.row -->
+						<c:if test="${not empty erro }">
+							<div class="alert alert-danger" align="center">
+								<strong><c:out value="${erro }" /></strong>
+							</div>
+						</c:if>
 						<c:if test="${empty palestra }">
-							<form action="cadastropalestras" method="post">
-								<div class="col-lg-6">
+							<form action="cadastropalestra" method="post">
+								<div class="col-lg-4">
 									<div class="table-responsive">
 										<table class="table table-hover">
 											<tbody>
@@ -91,24 +96,26 @@
 													</select>
 												</tr>
 												<tr>
-												<tr>
+													<tr>
 													<td>Nome do Palestrante</td>
 													<td><input class="form-control" placeholder="Nome"
 														size="40" name="nome"></td>
 												</tr>
-												<tr>
-												<tr>
-													<td>Empresa do Palestrante</td>
+												<tr><tr>
+													<td>Empr
+												esa do Palestrante</td>
 													<td><input class="form-control" placeholder="Empresa"
 														size="40" name="empresa"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Duração do Evento (Horas)</td>
 													<td><input class="form-control" placeholder="Duração"
 														value="2" size="10" name="duracao"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Dia</td>
 													<td><select class="form-control" name="dia">
@@ -119,12 +126,14 @@
 													</select></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Hora</td>
 													<td><input class="form-control"
 														placeholder="Hora (HH:mm)" size="40" name="hora"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Tipo do Evento</td>
 													<td><select class="form-control" name="tipo">
@@ -133,8 +142,10 @@
 																		value="${tipo.tipo }" /></option>
 															</c:forEach>
 													</select>
+												
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Curso Responsável</td>
 													<td><input class="form-control" placeholder="Curso"
@@ -144,6 +155,7 @@
 													</td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Evento</td>
 													<td><input class="form-control" placeholder="Evento"
@@ -153,6 +165,7 @@
 														value="${evento.codigo }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Sala</td>
 													<td><select class="form-control" name="sala">
@@ -165,14 +178,17 @@
 																		<c:out value="${sala.numero }" />
 																	</c:if>
 																</option>
-															</c:forEach>
-													</select></td>
+													</c:forEach>
+													</select>
+													</td>
 												</tr>
-												<tr>
+												
+																<tr>
 													<td align="center" colspan="2"><input
-														class="btn btn-default" type="submit" name="enviar"
-														value="Enviar"></td>
+																		class="btn btn-default" type="submit" name="enviar"
+																		value="Enviar"></td>
 												</tr>
+											
 											</tbody>
 										</table>
 									</div>
@@ -214,20 +230,24 @@
 															<option value="Dra."
 																<c:if test="${palestra.titulacao == 'Sr.' }"><c:out value="selected" /></c:if>>Dra.</option>
 													</select>
+												
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Nome do Palestrante</td>
 													<td><input class="form-control" placeholder="Nome"
 														size="40" name="nome" value="${palestra.palestrante }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Empresa do Palestrante</td>
 													<td><input class="form-control" placeholder="Empresa"
 														size="40" name="empresa" value="${palestra.empresa }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Duração do Evento (Horas)</td>
 													<td><input class="form-control" placeholder="Duração"
@@ -235,17 +255,19 @@
 														value="${palestra.duracao }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Dia</td>
 													<td><select class="form-control" name="dia">
 															<c:forEach items="${listadatas }" var="data">
 																<option value="${data.dtEvento }"
-																	<c:if test="${palestra.dt == ${data.dtEvento } }"><c:out value="selected" /></c:if>><c:out
+																	<c:if test="${palestra.dt } == ${data.dtEvento } }"><c:out value="selected" /></c:if>><c:out
 																		value="${data.dtConvertida }" /></option>
 															</c:forEach>
 													</select></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Hora</td>
 													<td><input class="form-control"
@@ -253,17 +275,20 @@
 														value="${palestra.hr }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Tipo do Evento</td>
 													<td><select class="form-control" name="tipo">
 															<c:forEach items="${listatipo }" var="tipo">
 																<option value="${tipo.codigo }"
-																	<c:if test="${palestra.tipo == ${tipo.codigo } }"><c:out value="selected" /></c:if>><c:out
+																	<c:if test="${palestra.tipo } == ${tipo.codigo } }"><c:out value="selected" /></c:if>><c:out
 																		value="${tipo.tipo }" /></option>
 															</c:forEach>
 													</select>
+												
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Curso Responsável</td>
 													<td><input class="form-control" placeholder="Curso"
@@ -273,6 +298,7 @@
 													</td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Evento</td>
 													<td><input class="form-control" placeholder="Evento"
@@ -282,18 +308,20 @@
 														value="${evento.codigo }"></td>
 												</tr>
 												<tr>
+												
 												<tr>
 													<td>Sala</td>
 													<td><select class="form-control" name="sala">
 															<c:forEach items="${listasala }" var="sala">
 																<option value="${sala.numero }"
-																	<c:if test="${palestra.sala == ${sala.numero } }"><c:out value="selected" /></c:if>>
+																	<c:if test="${palestra.sala } == ${sala.numero } }"><c:out value="selected" /></c:if>>
 																	<c:if test="${sala.numero == 0}">
 																		<c:out value="Auditório" />
 																	</c:if>
 																	<c:if test="${sala.numero != 0}">
 																		<c:out value="${sala.numero }" />
 																	</c:if>
+															
 															</c:forEach>
 													</select></td>
 												</tr>
@@ -312,14 +340,17 @@
 							</form>
 						</c:if>
 						<c:if test="${not empty listapalestra }">
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="table-responsive">
 									<table class="table table-hover">
 										<thead>
 											<tr>
 												<th>Título</th>
 												<th>Palestrante</th>
+												<th>Dia</th>
+												<th>Hora</th>
 												<th>Inscritos</th>
+												<th>Sala</th>
 												<th>Editar</th>
 												<th>Excluir</th>
 											</tr>
@@ -329,9 +360,14 @@
 											<tr>
 												<td><c:out value="${pal.titulo }" /></td>
 												<td><c:out value="${pal.palestrante }" /></td>
+												<td><c:out value="${pal.dt }" /></td>
+												<td><c:out value="${pal.hr }" /></td>
 												<td><c:out value="${pal.inscritos }" /></td>
-												<td><!-- Botão editar --></td>
-												<td><!-- Botão excluir --></td>
+												<td><c:if test="${pal.sala.numero == 0}"><c:out value="Auditório"></c:out></c:if><c:if test="${pal.sala.numero != 0}"><c:out value="${pal.sala.numero }" /></c:if></td>
+												<td>
+														<!-- Botão editar --></td>
+												<td>
+														<!-- Botão excluir --></td>
 											</tr>
 											</c:forEach>
 										</tbody>
