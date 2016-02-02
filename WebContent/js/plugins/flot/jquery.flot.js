@@ -2,11 +2,11 @@
  *
  * Released under the MIT license by IOLA, December 2007.
  *
- */
-
+ */ 
+ 
 // first an inline dependency, jquery.colorhelpers.js, we inline it here
 // for convenience
-
+ 
 /* Plugin for jQuery for working with colors.
  * 
  * Version 1.1.
